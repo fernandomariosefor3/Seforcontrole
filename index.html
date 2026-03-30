@@ -1,896 +1,142 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SEDUC-CE · Painel da Superintendência 2026</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEDUC-CE · Painel da Superintendência Escolar 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
-<!-- ═══════════════════════════════ SIDEBAR ═══════════════════════════════ -->
+<!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-brand">
-    <div class="brand-icon"><i class="fas fa-graduation-cap"></i></div>
-    <div class="brand-text">
-      <span class="brand-name">SEDUC · CE</span>
-      <span class="brand-sub">Superintendência Escolar</span>
+  <div class="sidebar-header">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="logo-text">
+        <span class="logo-title">SEDUC-CE</span>
+        <span class="logo-sub">Superintendência 2026</span>
+      </div>
     </div>
-    <button class="sidebar-close" id="sidebarClose"><i class="fas fa-xmark"></i></button>
-  </div>
-
-  <div class="sidebar-profile">
-    <div class="profile-avatar">SM</div>
-    <div class="profile-info">
-      <strong>Superintendente</strong>
-      <span>Ano Letivo 2026</span>
-    </div>
+    <button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button>
   </div>
 
   <nav class="sidebar-nav">
-    <span class="nav-label">Painel</span>
-    <a class="nav-link active" data-page="dashboard">
-      <i class="fas fa-gauge-high"></i><span>Dashboard</span>
-    </a>
-
-    <span class="nav-label">Monitoramento</span>
-    <a class="nav-link" data-page="fluxo">
-      <i class="fas fa-users-between-lines"></i><span>Fluxo &amp; Frequência</span>
-      <em class="nav-badge red" id="badgeFluxo" style="display:none">0</em>
-    </a>
-    <a class="nav-link" data-page="notas">
-      <i class="fas fa-clipboard-list"></i><span>Preenchimento de Notas</span>
-      <em class="nav-badge orange" id="badgeNotas" style="display:none">0</em>
-    </a>
-    <a class="nav-link" data-page="recomposicao">
-      <i class="fas fa-book-open-reader"></i><span>Recomposição de Aprend.</span>
-    </a>
-
-    <span class="nav-label">Gestão</span>
-    <a class="nav-link" data-page="plano">
-      <i class="fas fa-bullseye"></i><span>Plano de Ação</span>
-    </a>
-    <a class="nav-link" data-page="visitas">
-      <i class="fas fa-route"></i><span>Visitas Técnicas</span>
-    </a>
-    <a class="nav-link" data-page="circuito">
-      <i class="fas fa-arrows-spin"></i><span>Circuito de Gestão</span>
-    </a>
-
-    <span class="nav-label">Pedagógico</span>
-    <a class="nav-link" data-page="projetos">
-      <i class="fas fa-rocket"></i><span>Projetos Extraclasse</span>
-    </a>
-    <a class="nav-link" data-page="busca">
-      <i class="fas fa-magnifying-glass-location"></i><span>Busca Ativa Escolar</span>
-    </a>
-    <a class="nav-link" data-page="pedemeia">
-      <i class="fas fa-piggy-bank"></i><span>Pé-de-Meia</span>
-    </a>
-
-    <span class="nav-label">Organização</span>
-    <a class="nav-link" data-page="agenda">
-      <i class="fas fa-calendar-days"></i><span>Agenda &amp; Prazos</span>
-      <em class="nav-badge red" id="badgeAgenda" style="display:none">0</em>
-    </a>
-    <a class="nav-link" data-page="escolas">
-      <i class="fas fa-school"></i><span>Minhas Escolas</span>
-    </a>
-  </nav>
-</aside>
-<div class="overlay" id="overlay"></div>
-
-<!-- ═══════════════════════════════ WRAPPER ═══════════════════════════════ -->
-<div class="wrapper" id="wrapper">
-
-  <!-- TOPBAR -->
-  <header class="topbar">
-    <div class="topbar-l">
-      <button class="hamburger" id="hamburger"><i class="fas fa-bars"></i></button>
-      <nav class="breadcrumb-nav">
-        <span class="bc-root">Superintendência</span>
-        <i class="fas fa-chevron-right bc-sep"></i>
-        <span class="bc-current" id="bcCurrent">Dashboard</span>
-      </nav>
+    <div class="nav-group">
+      <span class="nav-group-label">VISÃO GERAL</span>
+      <a href="#" class="nav-item active" data-page="dashboard">
+        <i class="fas fa-chart-line"></i><span>Dashboard</span>
+      </a>
     </div>
-    <div class="topbar-r">
-      <div class="year-badge"><i class="fas fa-calendar-check"></i> Ano Letivo 2026</div>
-      <button class="top-icon-btn" id="btnAlertPanel" title="Alertas e Pendências">
+    <div class="nav-group">
+      <span class="nav-group-label">GESTÃO DE ESCOLAS</span>
+      <a href="#" class="nav-item" data-page="escolas">
+        <i class="fas fa-school"></i><span>Escolas</span>
+      </a>
+      <a href="#" class="nav-item" data-page="indicadores">
+        <i class="fas fa-chart-bar"></i><span>Indicadores</span>
+      </a>
+    </div>
+    <div class="nav-group">
+      <span class="nav-group-label">ACOMPANHAMENTO</span>
+      <a href="#" class="nav-item" data-page="frequencia">
+        <i class="fas fa-user-check"></i><span>Frequência & Fluxo</span>
+      </a>
+      <a href="#" class="nav-item" data-page="notas">
+        <i class="fas fa-edit"></i><span>Notas</span>
+      </a>
+      <a href="#" class="nav-item" data-page="plano-acao">
+        <i class="fas fa-bullseye"></i><span>Plano de Ação</span>
+      </a>
+    </div>
+    <div class="nav-group">
+      <span class="nav-group-label">SUPERINTENDÊNCIA</span>
+      <a href="#" class="nav-item" data-page="visitas">
+        <i class="fas fa-map-marker-alt"></i><span>Visitas</span>
+      </a>
+      <a href="#" class="nav-item" data-page="projetos">
+        <i class="fas fa-rocket"></i><span>Projetos Extraclasse</span>
+      </a>
+    </div>
+    <div class="nav-group">
+      <span class="nav-group-label">PROGRAMAS</span>
+      <a href="#" class="nav-item" data-page="busca-ativa">
+        <i class="fas fa-search"></i><span>Busca Ativa</span>
+      </a>
+      <a href="#" class="nav-item" data-page="agenda">
+        <i class="fas fa-calendar-alt"></i><span>Agenda & Alertas</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <span>Ano Letivo 2026 · SEDUC-CE</span>
+  </div>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main-content" id="mainContent">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+      <div class="breadcrumb" id="breadcrumb">Dashboard</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-info">
+        <i class="fas fa-calendar"></i>
+        <span id="currentDate"></span>
+      </div>
+      <div class="topbar-badge">
         <i class="fas fa-bell"></i>
-        <span class="dot-badge" id="dotBadge"></span>
-      </button>
-      <button class="top-icon-btn" id="btnPrint" title="Imprimir página">
-        <i class="fas fa-print"></i>
-      </button>
+        <span class="badge-count" id="alertCount">0</span>
+      </div>
+      <div class="topbar-user">
+        <i class="fas fa-user-circle"></i>
+        <span>Superintendente</span>
+      </div>
     </div>
   </header>
 
-  <!-- ALERT DRAWER -->
-  <div class="alert-drawer" id="alertDrawer">
-    <div class="drawer-head">
-      <h3><i class="fas fa-bell"></i> Alertas &amp; Pendências</h3>
-      <button id="closeDrawer"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="drawer-body" id="drawerBody"></div>
+  <!-- PAGE CONTENT -->
+  <div class="page-content" id="pageContent">
+    <!-- Conteúdo injetado via JS -->
   </div>
 
-  <!-- MAIN -->
-  <main class="main" id="main">
+</main>
 
-    <!-- ══════════════════════ DASHBOARD ══════════════════════ -->
-    <section class="page active" id="page-dashboard">
-      <div class="page-hero">
-        <div class="hero-text">
-          <h1><i class="fas fa-gauge-high" style="opacity:.8;margin-right:8px"></i>Painel da Superintendência</h1>
-          <p><i class="fas fa-star"></i> Cidadania e Convivência Democrática — Diretrizes Ano Letivo 2026</p>
-        </div>
-        <div class="hero-deco">
-          <div class="deco-shape s1"></div>
-          <div class="deco-shape s2"></div>
-          <div class="deco-shape s3"></div>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="kpiRow"></div>
-
-      <div class="grid-2-1">
-        <div class="card">
-          <div class="card-hd">
-            <span><i class="fas fa-chart-bar"></i> Frequência por Escola</span>
-            <span class="hd-tag">1º Bimestre 2026</span>
-          </div>
-          <div class="chart-box" style="height:270px"><canvas id="chartFreq"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-pie"></i> Status Plano de Ação</span></div>
-          <div class="chart-box" style="height:270px"><canvas id="chartPlano"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-3">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-line"></i> Frequência Mensal (%)</span></div>
-          <div class="chart-box" style="height:200px"><canvas id="chartFreqMes"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-clipboard-check"></i> Notas Lançadas (%)</span></div>
-          <div class="chart-box" style="height:200px"><canvas id="chartNotas"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-triangle-exclamation"></i> Escolas em Alerta</span>
-            <button class="link-btn" data-goto="fluxo">Ver todas</button>
-          </div>
-          <div id="escolasAlerta"></div>
-        </div>
-      </div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-hd">
-            <span><i class="fas fa-route"></i> Últimas Visitas Técnicas</span>
-            <button class="link-btn" data-goto="visitas">Ver todas</button>
-          </div>
-          <div class="card-body" id="dashVisitas"></div>
-        </div>
-        <div class="card">
-          <div class="card-hd">
-            <span><i class="fas fa-calendar-days"></i> Próximos Prazos</span>
-            <button class="link-btn" data-goto="agenda">Ver agenda</button>
-          </div>
-          <div class="card-body" id="dashPrazos"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ FLUXO & FREQUÊNCIA ══════════════════════ -->
-    <section class="page" id="page-fluxo">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-users-between-lines"></i> Fluxo Escolar &amp; Frequência</h2>
-          <p class="page-sub">Monitoramento preventivo — base para tomada de decisão da Superintendência</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fFluxoBim">
-            <option value="1">1º Bimestre</option>
-            <option value="2">2º Bimestre</option>
-          </select>
-          <select class="filter-select" id="fFluxoEscola"><option value="">Todas as escolas</option></select>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="fluxoKpis"></div>
-
-      <div class="grid-2" style="margin-bottom:20px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-bar"></i> Frequência por Escola — Comparativo</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartFluxoBar"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-line"></i> Evolução Frequência Mensal</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartFluxoLinha"></canvas></div>
-        </div>
-      </div>
-
-      <div class="fluxo-grid" id="fluxoGrid"></div>
-    </section>
-
-    <!-- ══════════════════════ NOTAS ══════════════════════ -->
-    <section class="page" id="page-notas">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-clipboard-list"></i> Preenchimento de Notas</h2>
-          <p class="page-sub">Monitoramento do lançamento de notas no SIGE Escola por escola e por componente</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fNotasEscola"><option value="">Todas as escolas</option></select>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="notasKpis"></div>
-
-      <div class="grid-2" style="margin-bottom:20px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-bar"></i> % Notas Lançadas por Escola</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartNotasEscola"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-book"></i> % por Componente Curricular</span>
-            <span class="hd-tag">EEMTI Presidente Costa e Silva</span>
-          </div>
-          <div class="chart-box" style="height:260px"><canvas id="chartNotasComp"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-1">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-table"></i> Situação por Escola</span></div>
-          <div class="table-wrap">
-            <table id="tblNotas">
-              <thead>
-                <tr>
-                  <th>Escola</th>
-                  <th>Turmas</th>
-                  <th>Notas Lançadas</th>
-                  <th>Pendentes</th>
-                  <th>% Preenchido</th>
-                  <th>Situação</th>
-                  <th>Prazo</th>
-                </tr>
-              </thead>
-              <tbody id="tblNotasBody"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ RECOMPOSIÇÃO ══════════════════════ -->
-    <section class="page" id="page-recomposicao">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-book-open-reader"></i> Recomposição das Aprendizagens</h2>
-          <p class="page-sub">Foco na Aprendizagem — Khan Academy e intervenções pedagógicas por escola</p>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="recompKpis"></div>
-
-      <div class="grid-2" style="margin-bottom:20px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-bar"></i> Progresso de Implantação (%)</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartRecomp"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-users"></i> Alunos Abaixo do Nível por Escola</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartRecompAlunos"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-1">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-table"></i> Recomposição por Escola</span></div>
-          <div class="table-wrap">
-            <table class="recomp-table">
-              <thead>
-                <tr>
-                  <th>Escola</th>
-                  <th>Foco na Aprendizagem</th>
-                  <th>Khan Academy</th>
-                  <th>Alunos Abaixo Nível</th>
-                  <th>Intervenções</th>
-                  <th>Progresso</th>
-                </tr>
-              </thead>
-              <tbody id="tblRecomp"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ PLANO DE AÇÃO ══════════════════════ -->
-    <section class="page" id="page-plano">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-bullseye"></i> Plano de Ação</h2>
-          <p class="page-sub">Acompanhamento de ações por eixo: pedagógico, gestão, permanência e infraestrutura</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fPlanoEixo">
-            <option value="">Todos os eixos</option>
-            <option value="pedagogico">Pedagógico</option>
-            <option value="gestao">Gestão</option>
-            <option value="permanencia">Permanência</option>
-            <option value="infraestrutura">Infraestrutura</option>
-          </select>
-          <select class="filter-select" id="fPlanoStatus">
-            <option value="">Todos os status</option>
-            <option value="planejada">Planejada</option>
-            <option value="andamento">Em Andamento</option>
-            <option value="atrasada">Atrasada</option>
-            <option value="concluida">Concluída</option>
-          </select>
-          <select class="filter-select" id="fPlanoEscola"><option value="">Todas as escolas</option></select>
-          <button class="btn btn-primary btn-sm" id="btnNovaAcao"><i class="fas fa-plus"></i> Nova Ação</button>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="planoKpis"></div>
-
-      <div class="grid-2" style="margin-bottom:20px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-pie"></i> Status das Ações</span></div>
-          <div class="chart-box" style="height:240px"><canvas id="chartPlanoStatus"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-bar"></i> Ações por Eixo</span></div>
-          <div class="chart-box" style="height:240px"><canvas id="chartPlanoEixo"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-1">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-list-check"></i> Lista de Ações</span></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Ação</th>
-                  <th>Eixo</th>
-                  <th>Escola</th>
-                  <th>Responsável</th>
-                  <th>Prazo</th>
-                  <th>Progresso</th>
-                  <th>Status</th>
-                  <th>Ações</th>
-                </tr>
-              </thead>
-              <tbody id="tblPlano"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ VISITAS ══════════════════════ -->
-    <section class="page" id="page-visitas">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-route"></i> Visitas Técnicas da Superintendência</h2>
-          <p class="page-sub">Registro de pautas, encaminhamentos e pactuações das visitas às escolas</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fVisitaStatus">
-            <option value="">Todos</option>
-            <option value="realizada">Realizadas</option>
-            <option value="agendada">Agendadas</option>
-          </select>
-          <select class="filter-select" id="fVisitaEscola"><option value="">Todas as escolas</option></select>
-          <button class="btn btn-primary btn-sm" id="btnNovaVisita"><i class="fas fa-plus"></i> Nova Visita</button>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="visitasKpis"></div>
-
-      <div class="visita-list" id="visitaList"></div>
-    </section>
-
-    <!-- ══════════════════════ CIRCUITO DE GESTÃO ══════════════════════ -->
-    <section class="page" id="page-circuito">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-arrows-spin"></i> Circuito de Gestão Cearense</h2>
-          <p class="page-sub">Ciclo contínuo de monitoramento, avaliação e correção de rotas — CGC/SEDUC</p>
-        </div>
-      </div>
-
-      <div class="etapas-row" id="etapasRow"></div>
-
-      <div class="grid-2">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-list-check"></i> Checklist SMAR — 1º Bimestre</span>
-            <button class="btn btn-ghost btn-sm" id="btnResetSmar"><i class="fas fa-rotate-left"></i> Reiniciar</button>
-          </div>
-          <div class="card-body">
-            <div class="smar-check-list" id="smarChecklist"></div>
-            <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--bg2)">
-              <div class="flex-between">
-                <span class="fs-12 text-muted">Conclusão SMAR</span>
-                <span class="fs-13 fw-bold text-green" id="smarPct">0%</span>
-              </div>
-              <div class="prog-bar-bg mt-8" style="height:10px">
-                <div class="prog-bar-fill green" id="smarBar" style="width:0%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-radar"></i> Radar de Indicadores</span>
-            <span class="hd-tag">1º Bimestre</span>
-          </div>
-          <div class="chart-box" style="height:280px"><canvas id="chartRadar"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-1" style="margin-top:16px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-pen-to-square"></i> Observações e Encaminhamentos SMAR</span>
-            <button class="btn btn-teal btn-sm" id="btnSalvarObs"><i class="fas fa-save"></i> Salvar</button>
-          </div>
-          <div class="card-body">
-            <textarea id="circuitoObs" style="width:100%;border:1.5px solid var(--border);border-radius:var(--r-sm);padding:10px 12px;min-height:100px;font-size:13px;color:var(--txt1)" placeholder="Registre aqui os encaminhamentos e observações desta rodada SMAR..."></textarea>
-            <div id="obsHistory" style="margin-top:12px;display:flex;flex-direction:column;gap:8px"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ PROJETOS EXTRACLASSE ══════════════════════ -->
-    <section class="page" id="page-projetos">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-rocket"></i> Projetos Extraclasse</h2>
-          <p class="page-sub">Ceará Científico, ENEM, Robótica, Cultura, Ambiental e PPDT — monitoramento 2026</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fProjCat">
-            <option value="">Todas as categorias</option>
-            <option value="cientifico">Científico</option>
-            <option value="enem">ENEM / C3</option>
-            <option value="cultural">Cultural</option>
-            <option value="ambiental">Ambiental</option>
-            <option value="estagio">Estágio</option>
-            <option value="ppdt">PPDT</option>
-          </select>
-          <select class="filter-select" id="fProjStatus">
-            <option value="">Todos</option>
-            <option value="andamento">Em andamento</option>
-            <option value="planejado">Planejado</option>
-          </select>
-          <button class="btn btn-primary btn-sm" id="btnNovoProjeto"><i class="fas fa-plus"></i> Novo Projeto</button>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="projetosKpis"></div>
-
-      <div class="proj-grid" id="projGrid"></div>
-    </section>
-
-    <!-- ══════════════════════ BUSCA ATIVA ══════════════════════ -->
-    <section class="page" id="page-busca">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-magnifying-glass-location"></i> Busca Ativa Escolar</h2>
-          <p class="page-sub">Nem 1 Aluno Fora da Escola — monitoramento individual de estudantes em risco</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fBuscaEscola"><option value="">Todas as escolas</option></select>
-          <select class="filter-select" id="fBuscaSit">
-            <option value="">Todas as situações</option>
-            <option value="sem_contato">Sem Contato</option>
-            <option value="acompanhamento">Em Acompanhamento</option>
-            <option value="reintegrado">Reintegrado</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="busca-stat-row" id="buscaStats"></div>
-
-      <div class="grid-2" style="margin-bottom:20px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-pie"></i> Por Situação</span></div>
-          <div class="chart-box" style="height:240px"><canvas id="chartBuscaSit"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-bar"></i> Casos por Escola</span></div>
-          <div class="chart-box" style="height:240px"><canvas id="chartBuscaEscola"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-1">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-table"></i> Estudantes em Acompanhamento</span></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Escola</th>
-                  <th>Turma</th>
-                  <th>Motivo</th>
-                  <th>Faltas</th>
-                  <th>Contato</th>
-                  <th>Visita Domiciliar</th>
-                  <th>Responsável</th>
-                  <th>Situação</th>
-                </tr>
-              </thead>
-              <tbody id="tblBusca"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ PÉ-DE-MEIA ══════════════════════ -->
-    <section class="page" id="page-pedemeia">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-piggy-bank"></i> Programa Pé-de-Meia</h2>
-          <p class="page-sub">Controle de beneficiários, frequência mínima (80%) e envio mensal ao MEC</p>
-        </div>
-      </div>
-
-      <div class="pdm-summary" id="pdmSummary"></div>
-
-      <div class="grid-2" style="margin-bottom:20px">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-bar"></i> Beneficiários em Risco (&lt;80%)</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartPdmRisco"></canvas></div>
-        </div>
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-chart-line"></i> Frequência Média por Escola</span></div>
-          <div class="chart-box" style="height:260px"><canvas id="chartPdmFreq"></canvas></div>
-        </div>
-      </div>
-
-      <div class="grid-1">
-        <div class="card">
-          <div class="card-hd"><span><i class="fas fa-table"></i> Situação por Escola</span></div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Escola</th>
-                  <th>Beneficiários</th>
-                  <th>Frequência Média</th>
-                  <th>Em Risco (&lt;80%)</th>
-                  <th>Bloqueados</th>
-                  <th>Envio MEC</th>
-                  <th>Data Envio</th>
-                </tr>
-              </thead>
-              <tbody id="tblPdm"></tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══════════════════════ AGENDA & PRAZOS ══════════════════════ -->
-    <section class="page" id="page-agenda">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-calendar-days"></i> Agenda &amp; Prazos 2026</h2>
-          <p class="page-sub">Datas críticas do calendário letivo 2026 — SEDUC-CE / INEP / MEC</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fAgendaTipo">
-            <option value="">Todos os tipos</option>
-            <option value="prazo">Prazos</option>
-            <option value="reuniao">Reuniões</option>
-            <option value="visita">Visitas</option>
-            <option value="avaliacao">Avaliações</option>
-            <option value="evento">Eventos</option>
-            <option value="formacao">Formação</option>
-          </select>
-          <button class="btn btn-primary btn-sm" id="btnNovoEvento"><i class="fas fa-plus"></i> Novo Evento</button>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="agendaKpis"></div>
-
-      <div class="agenda-list" id="agendaList"></div>
-    </section>
-
-    <!-- ══════════════════════ MINHAS ESCOLAS ══════════════════════ -->
-    <section class="page" id="page-escolas">
-      <div class="page-hd">
-        <div>
-          <h2><i class="fas fa-school"></i> Minhas Escolas</h2>
-          <p class="page-sub">Visão consolidada dos indicadores de cada escola da sua superintendência</p>
-        </div>
-        <div class="hd-actions">
-          <select class="filter-select" id="fEscolaTipo">
-            <option value="">Todos os tipos</option>
-            <option value="EEMTI">EEMTI</option>
-            <option value="EEEP">EEEP</option>
-            <option value="EEM">EEM</option>
-          </select>
-          <input type="text" class="filter-input" id="fEscolaBusca" placeholder="Buscar escola…" style="min-width:180px"/>
-        </div>
-      </div>
-
-      <div class="kpi-row" id="escolasKpis"></div>
-
-      <div class="escola-grid" id="escolaGrid"></div>
-    </section>
-
-  </main>
-</div><!-- /wrapper -->
-
-<!-- ═══════════════════════════════ MODAIS ═══════════════════════════════ -->
-
-<!-- Modal Nova/Edit Ação -->
-<div class="modal" id="modalAcao">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3><i class="fas fa-bullseye"></i> <span id="modalAcaoTitulo">Nova Ação</span></h3>
-      <button onclick="closeModal('modalAcao')"><i class="fas fa-xmark"></i></button>
+<!-- MODAL GLOBAL -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-box" id="modalBox">
+    <div class="modal-header">
+      <h3 id="modalTitle">Título</h3>
+      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
     </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label>Descrição da Ação *</label>
-        <input type="text" id="aAcao" placeholder="Descreva a ação..."/>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Eixo *</label>
-          <select id="aEixo">
-            <option value="pedagogico">Pedagógico</option>
-            <option value="gestao">Gestão</option>
-            <option value="permanencia">Permanência</option>
-            <option value="infraestrutura">Infraestrutura</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Escola *</label>
-          <select id="aEscola"><option value="">Selecione…</option></select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Responsável *</label>
-          <input type="text" id="aResp" placeholder="Responsável pela ação"/>
-        </div>
-        <div class="form-group">
-          <label>Prazo *</label>
-          <input type="date" id="aPrazo"/>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Progresso (%)</label>
-          <input type="number" id="aProg" min="0" max="100" placeholder="0–100"/>
-        </div>
-        <div class="form-group">
-          <label>Status</label>
-          <select id="aStatus">
-            <option value="planejada">Planejada</option>
-            <option value="andamento">Em Andamento</option>
-            <option value="atrasada">Atrasada</option>
-            <option value="concluida">Concluída</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Prioridade</label>
-        <select id="aPrio">
-          <option value="alta">Alta</option>
-          <option value="media">Média</option>
-          <option value="baixa">Baixa</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label>Observações</label>
-        <textarea id="aObs" placeholder="Contexto, impedimentos, anotações..."></textarea>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modalAcao')">Cancelar</button>
-      <button class="btn btn-primary" id="btnSalvarAcao"><i class="fas fa-save"></i> Salvar Ação</button>
-    </div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-footer" id="modalFooter"></div>
   </div>
 </div>
 
-<!-- Modal Nova/Edit Visita -->
-<div class="modal" id="modalVisita">
-  <div class="modal-box wide">
-    <div class="modal-head">
-      <h3><i class="fas fa-route"></i> <span id="modalVisitaTitulo">Nova Visita Técnica</span></h3>
-      <button onclick="closeModal('modalVisita')"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="form-row">
-        <div class="form-group">
-          <label>Escola *</label>
-          <select id="vEscola"><option value="">Selecione…</option></select>
-        </div>
-        <div class="form-group">
-          <label>Data *</label>
-          <input type="date" id="vData"/>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Tipo de Visita</label>
-          <select id="vTipo">
-            <option value="tecnica">Técnica</option>
-            <option value="monitoramento">Monitoramento</option>
-            <option value="smar">SMAR</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Status</label>
-          <select id="vStatus">
-            <option value="agendada">Agendada</option>
-            <option value="realizada">Realizada</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Pauta *</label>
-        <textarea id="vPauta" placeholder="Descreva a pauta da visita..."></textarea>
-      </div>
-      <div class="form-group">
-        <label>Participantes</label>
-        <input type="text" id="vPart" placeholder="Quem participará/participou"/>
-      </div>
-      <div class="form-group">
-        <label>Encaminhamentos</label>
-        <textarea id="vEncam" placeholder="Registre os encaminhamentos (1. ... 2. ...)"></textarea>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Próxima Visita</label>
-          <input type="date" id="vProxima"/>
-        </div>
-        <div class="form-group">
-          <label>Observações</label>
-          <input type="text" id="vObs" placeholder="Obs. adicionais"/>
-        </div>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modalVisita')">Cancelar</button>
-      <button class="btn btn-primary" id="btnSalvarVisita"><i class="fas fa-save"></i> Salvar Visita</button>
-    </div>
-  </div>
-</div>
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
 
-<!-- Modal Detalhe Escola -->
-<div class="modal" id="modalEscola">
-  <div class="modal-box wide">
-    <div class="modal-head">
-      <h3><i class="fas fa-school"></i> <span id="modalEscolaNome">Escola</span></h3>
-      <button onclick="closeModal('modalEscola')"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="modal-body" id="modalEscolaBody"></div>
-  </div>
-</div>
-
-<!-- Modal Novo Projeto -->
-<div class="modal" id="modalProjeto">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3><i class="fas fa-rocket"></i> <span id="modalProjetoTitulo">Novo Projeto</span></h3>
-      <button onclick="closeModal('modalProjeto')"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label>Nome do Projeto *</label>
-        <input type="text" id="pNome" placeholder="Nome do projeto"/>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Categoria</label>
-          <select id="pCat">
-            <option value="cientifico">Científico</option>
-            <option value="enem">ENEM / C3</option>
-            <option value="cultural">Cultural</option>
-            <option value="ambiental">Ambiental</option>
-            <option value="estagio">Estágio</option>
-            <option value="ppdt">PPDT</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Escola</label>
-          <select id="pEscola"><option value="">Selecione…</option></select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Coordenador</label>
-          <input type="text" id="pCoord"/>
-        </div>
-        <div class="form-group">
-          <label>Participantes</label>
-          <input type="number" id="pPart" min="0"/>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Período</label>
-        <input type="text" id="pPeriodo" placeholder="ex: Mar — Jun/2026"/>
-      </div>
-      <div class="form-group">
-        <label>Descrição</label>
-        <textarea id="pDesc"></textarea>
-      </div>
-      <div class="form-group">
-        <label>Status</label>
-        <select id="pStatus">
-          <option value="andamento">Em andamento</option>
-          <option value="planejado">Planejado</option>
-          <option value="concluido">Concluído</option>
-        </select>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modalProjeto')">Cancelar</button>
-      <button class="btn btn-primary" id="btnSalvarProjeto"><i class="fas fa-save"></i> Salvar</button>
-    </div>
-  </div>
-</div>
-
-<!-- Modal Novo Evento -->
-<div class="modal" id="modalEvento">
-  <div class="modal-box">
-    <div class="modal-head">
-      <h3><i class="fas fa-calendar-plus"></i> Novo Evento / Prazo</h3>
-      <button onclick="closeModal('modalEvento')"><i class="fas fa-xmark"></i></button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group">
-        <label>Título *</label>
-        <input type="text" id="evTitulo" placeholder="Nome do evento/prazo"/>
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label>Data *</label>
-          <input type="date" id="evData"/>
-        </div>
-        <div class="form-group">
-          <label>Tipo</label>
-          <select id="evTipo">
-            <option value="prazo">Prazo</option>
-            <option value="reuniao">Reunião</option>
-            <option value="visita">Visita</option>
-            <option value="avaliacao">Avaliação</option>
-            <option value="evento">Evento</option>
-            <option value="formacao">Formação</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>Descrição</label>
-        <textarea id="evDesc" placeholder="Detalhes do evento..."></textarea>
-      </div>
-    </div>
-    <div class="modal-foot">
-      <button class="btn btn-ghost" onclick="closeModal('modalEvento')">Cancelar</button>
-      <button class="btn btn-primary" id="btnSalvarEvento"><i class="fas fa-save"></i> Salvar</button>
-    </div>
-  </div>
-</div>
-
-<!-- Toast container -->
-<div id="toastWrap"></div>
-
-<!-- Scripts -->
-<script src="js/data.js"></script>
+<script src="js/api.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/pages/dashboard.js"></script>
+<script src="js/pages/escolas.js"></script>
+<script src="js/pages/indicadores.js"></script>
+<script src="js/pages/frequencia.js"></script>
+<script src="js/pages/notas.js"></script>
+<script src="js/pages/plano-acao.js"></script>
+<script src="js/pages/visitas.js"></script>
+<script src="js/pages/projetos.js"></script>
+<script src="js/pages/busca-ativa.js"></script>
+<script src="js/pages/agenda.js"></script>
 <script src="js/app.js"></script>
-
 </body>
 </html>
