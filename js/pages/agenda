@@ -1,0 +1,139 @@
+/* PAGE: Agenda & Alertas — Prazos críticos 2026 */
+const AgendaPage = {
+  prazos: [
+    { mes:1, dia:27, titulo:'Início do Ano Letivo 2026', desc:'Início oficial das aulas da rede estadual', tipo:'info' },
+    { mes:2, dia:1, titulo:'Censo Escolar — 2ª Fase', desc:'Início da coleta de situação do aluno (aprovação/reprovação/abandono)', tipo:'atencao' },
+    { mes:2, dia:15, titulo:'Semana da Busca Ativa — 1º Semestre', desc:'Dia D da Busca Ativa: identificação de alunos evadidos', tipo:'critico' },
+    { mes:3, dia:15, titulo:'Censo Escolar — Encerramento 2ª Fase', desc:'Prazo final para informar situação final dos alunos', tipo:'atencao' },
+    { mes:3, dia:30, titulo:'Jornada Pedagógica de Revisão', desc:'Revisão do Plano de Ação com base nos primeiros indicadores', tipo:'info' },
+    { mes:4, dia:15, titulo:'Conselho de Turma — 1º Bimestre', desc:'Reuniões bimestrais com convocatória mínima de 8 dias de antecedência', tipo:'atencao' },
+    { mes:5, dia:27, titulo:'Censo Escolar — Congelamento', desc:'Última quarta-feira de maio: congelamento dos dados de matrícula inicial', tipo:'critico' },
+    { mes:6, dia:30, titulo:'Lançamento de Eletivas — 1º Semestre', desc:'Prazo para lançar enturmação e notas de componentes eletivos no SIGE', tipo:'atencao' },
+    { mes:6, dia:15, titulo:'Ceará Científico — Etapa Escolar', desc:'Etapa escolar deve ocorrer até junho (1º semestre)', tipo:'info' },
+    { mes:7, dia:1, titulo:'Início das Férias Escolares', desc:'Recesso escolar de julho', tipo:'info' },
+    { mes:7, dia:15, titulo:'Preparação para Estágio', desc:'Realização obrigatória na última semana de junho / primeira de julho (EEEPs)', tipo:'atencao' },
+    { mes:7, dia:20, titulo:'Retorno às Aulas — 2º Semestre', desc:'Início do segundo semestre letivo', tipo:'info' },
+    { mes:7, dia:25, titulo:'Semana da Busca Ativa — 2º Semestre', desc:'Dia D da Busca Ativa: segundo semestre', tipo:'critico' },
+    { mes:8, dia:1, titulo:'Início do Estágio em Campo — Eixo Geral', desc:'Preferencialmente na primeira semana de agosto (EEEPs)', tipo:'atencao' },
+    { mes:9, dia:15, titulo:'Censo Escolar — Início da Retificação', desc:'Segunda quinzena de setembro: abertura para retificação de dados', tipo:'atencao' },
+    { mes:10, dia:15, titulo:'Conselho de Turma — 3º Bimestre', desc:'Reunião bimestral de acompanhamento', tipo:'atencao' },
+    { mes:10, dia:15, titulo:'Censo Escolar — Encerramento da Retificação', desc:'Prazo final: primeira quinzena de outubro', tipo:'critico' },
+    { mes:11, dia:5, titulo:'Patrimônio — Conciliação Mensal', desc:'Envio do espelho de baixas à COFIN até dia 5 de cada mês', tipo:'atencao' },
+    { mes:11, dia:15, titulo:'Pré-inscrição ENEM 2027', desc:'Acompanhar prazo de isenção e inscrição — "ENEM: Chego junto, Chego bem!"', tipo:'info' },
+    { mes:12, dia:5, titulo:'Lançamento de Eletivas — 2º Semestre', desc:'Prazo para lançar notas de eletivas no SIGE até dezembro', tipo:'critico' },
+    { mes:12, dia:15, titulo:'Parada Reflexiva e Conselho de Turma Final', desc:'Avaliação final do ano letivo, revisão do Plano de Ação 2026', tipo:'atencao' },
+    { mes:12, dia:20, titulo:'Relatório Anual de Atividades', desc:'Encaminhamento via link da SEDUC conforme Resolução 510/2023 - CEE', tipo:'critico' },
+  ],
+
+  render() {
+    const content = document.getElementById('pageContent');
+    const hoje = new Date();
+    const mesAtual = hoje.getMonth() + 1;
+
+    const proximos = this.prazos.filter(p => p.mes >= mesAtual).slice(0, 4);
+    const criticos = this.prazos.filter(p => p.tipo === 'critico');
+
+    content.innerHTML = `
+      <div class="page-header">
+        <div class="page-header-info">
+          <h1><i class="fas fa-calendar-alt" style="color:var(--azul);margin-right:8px"></i>Agenda & Alertas 2026</h1>
+          <p>Prazos críticos, rotinas e eventos do ano letivo baseados nas Diretrizes SEDUC-CE 2026.</p>
+        </div>
+      </div>
+
+      <!-- Próximos prazos -->
+      <div class="card" style="margin-bottom:20px">
+        <div class="card-header">
+          <div class="card-title"><i class="fas fa-clock" style="color:var(--azul);margin-right:6px"></i>Próximos Prazos</div>
+          <span class="badge badge-info">${proximos.length} eventos</span>
+        </div>
+        <div class="card-body">
+          ${proximos.map(p => `
+            <div class="agenda-day">
+              <div class="agenda-date-box" style="background:${p.tipo==='critico'?'var(--vermelho)':p.tipo==='atencao'?'var(--amarelo)':'var(--azul)'}">
+                <div class="agenda-date-day">${p.dia}</div>
+                <div class="agenda-date-mon">${Utils.mesNome(p.mes)}</div>
+              </div>
+              <div>
+                <div class="agenda-item-title">${p.titulo}</div>
+                <div class="agenda-item-desc">${p.desc}</div>
+                <span class="badge badge-${p.tipo==='critico'?'danger':p.tipo==='atencao'?'warning':'info'}" style="margin-top:4px">
+                  ${p.tipo==='critico'?'Crítico':p.tipo==='atencao'?'Atenção':'Informativo'}
+                </span>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Alertas críticos -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><i class="fas fa-exclamation-triangle" style="color:var(--vermelho);margin-right:6px"></i>Prazos Críticos 2026</div>
+            <span class="badge badge-danger">${criticos.length}</span>
+          </div>
+          <div class="card-body">
+            ${criticos.map(p => `
+              <div class="alert-item">
+                <div class="alert-icon critico"><i class="fas fa-flag"></i></div>
+                <div>
+                  <div class="alert-title">${p.titulo}</div>
+                  <div class="alert-desc">${p.desc}</div>
+                  <div class="alert-time">${p.dia}/${p.mes < 10 ? '0'+p.mes : p.mes}/2026</div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- Calendário completo por mês -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title"><i class="fas fa-calendar" style="color:var(--verde);margin-right:6px"></i>Calendário por Mês</div>
+          </div>
+          <div class="card-body" style="max-height:500px;overflow-y:auto">
+            ${this.renderCalendario()}
+          </div>
+        </div>
+      </div>
+
+      <!-- Legenda -->
+      <div style="display:flex;gap:16px;margin-top:16px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px">
+          <span class="badge badge-danger">Crítico</span>
+          <span style="color:var(--text-secondary)">Prazo improrrogável</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px">
+          <span class="badge badge-warning">Atenção</span>
+          <span style="color:var(--text-secondary)">Prazo importante</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px">
+          <span class="badge badge-info">Informativo</span>
+          <span style="color:var(--text-secondary)">Marco do ano letivo</span>
+        </div>
+      </div>
+    `;
+  },
+
+  renderCalendario() {
+    const meses = [...new Set(this.prazos.map(p => p.mes))].sort((a,b) => a-b);
+    return meses.map(m => {
+      const eventos = this.prazos.filter(p => p.mes === m);
+      const mNome = ['','Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'][m];
+      return `
+        <div style="margin-bottom:16px">
+          <div style="font-size:12px;font-weight:700;color:var(--text-secondary);text-transform:uppercase;margin-bottom:8px;letter-spacing:.05em">
+            ${mNome}
+          </div>
+          ${eventos.map(p => `
+            <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;padding:8px;background:#f8fafc;border-radius:8px">
+              <span style="font-size:11px;font-weight:700;color:#fff;background:${p.tipo==='critico'?'var(--vermelho)':p.tipo==='atencao'?'var(--amarelo)':'var(--azul)'};padding:2px 6px;border-radius:4px;min-width:24px;text-align:center">${p.dia}</span>
+              <span style="font-size:12px;color:var(--text-primary)">${p.titulo}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }).join('');
+  }
+};
